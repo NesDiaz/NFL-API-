@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./assets/icons8-nfl-100.png" />
+    <title>NFL Player Stats</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+     <body>
+    <nav class="navbar">
+      <div class="content-wrapper">
+        <div class="logo">
+          <img rel="icon" src="./assets/icons8-nfl-100.png" alt="NFL logo" />
+        </div>
+        <ul class="links decor-style">
+          <li><a href="index.html" class="nav__link" onclick="toggleModal()">Home</a></li>
+          <li><a href="Teams.html" class="nav__link"  onclick="toggleModal()">Teams</a></li>
+          <li><a href="stats.html" class="nav__link" onclick="toggleModal()">Stats</a></li>
+        </ul>
+          <button class="hamburger">
+            <i class="fa-solid fa-bars" onclick="changeIcon(this)"></i>
+          </button>
+
+      </div>
+    </nav>
+
+    <nav class="mobile-nav">
+      <ul class="mobile-Links">
+        <li><a href="#home" class="nav__link" onclick="toggleModal()">Home</a></li>
+        <li><a href="#teams" class="nav__link"  onclick="toggleModal()">Teams</a></li>
+        <li><a href="#stats" class="nav__link" onclick="toggleModal()">Stats</a></li>
+      </ul>
+    </nav>
+
+    <section id="landing-page">
+      <div class="content-wrapper content decor-style column">
+        <div style="width: 100%">
+          <div class="animate-title">
+            <h1 class="title delay-1 animate">NFL Stat Leaders</h1>
+          </div>
+        </div>
+        <div style="width: 100%">
+          <div class="animate-title--two">
+            <h2 class="sub__title delay-2 animate">Player Stats / Team Stats</h2>
+          </div>
+        </div>
+        
+    </section>
+  </body>
+  <script src="index.js"></script>
+  <!-- <a target="_blank" href="https://icons8.com/icon/39737/nfl">NFL</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+
+  <a target="_blank" href="https://icons8.com/icon/vp4dZv81U83l/american-football-player">American Football</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+  
+  <a target="_blank" href="https://icons8.com/icon/ZOxGyP1i8w9G/american-football-goal">American Football Goal</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
+
+</html>
