@@ -2,7 +2,7 @@
 
 * {
     padding: 0;
-    margin: 0;
+  
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
@@ -372,64 +372,31 @@ button {
 }
 
 /* TEAMS PAGE */
-
+* {
+    box-sizing: border-box;
+}
 .layout {
    display: flex;
+   width: 100%;
+   justify-content: center;
 }
-.page__layout .layout__column--1{
-    -ms-flex-prefered-size:200px;
-    flex-basis: 200px;
-    max-width: 100%;
+.layout__column {
+  flex: 1;                       
 }
-.page__layout .layout__column--1:last-child{
-    width: 100%;
-}
-.layout__column{
-    -ms-flex-prefered-size:auto;
-    -webkit-box-flex: 1;
-    -ms-flex-positive: 1;
-    -ms-flex-negative: 1;
-    flex-basis: auto;
-    flex-grow: 1;
-    flex-shrink: 1;
-}
-.layout__column+.layout__column {
-    padding-left: 6px;
-}
-.TeamsWrapper div.is-split .layout__column:first-child{
-    margin-right: 20px;
-}
- 
 .TeamsWrapper {
-    background-color: lightslategray;
-} 
+background-color: lightslategray;
+ max-width: 90%;
+ margin: 24px auto;
+ padding: 8px !important;
+}
 .break {
     border-radius: 10px;
 } 
-.marg__Bott {
-    margin-bottom: 8px !important;
-} 
-.page1 {
-    padding: 16px !important;
-}
-
-.flex {
-    display: flex;
-}
-
-.Team__section{
-    margin-top: 32px !important;
-}
-
-.TeamsWrapper div.is-split div.headline {
-    border-bottom: 1px solid #f1f2f3;
-} 
+ 
 .head__pad{
     padding-bottom: 12px !important;
 } 
-.num {
-    font-weight: 400;
-}
+
 .num1{
     line-height: 16px;
 } 
@@ -439,17 +406,13 @@ button {
 .cont__marg{
     margin-top: 12px !important;
 }
-.contentList--NoBorder .contentList__Item:first-child{
-    padding-top: 0;
-}
-.contentList--NoBorder .contentList__Item{
-    padding: 4px;
-}
 .contentList__Item {
-    clear: both;
-    padding: 10px 0;
+    padding: 6px; 
 }
-.team__container{
+.team__container {
+    margin-top: 4px !important;
+}
+.Team__section {
     margin-top: 8px !important;
 }
 .items-center {
@@ -491,9 +454,7 @@ img {
 .info__color {
     font-size: 16px;
 }
-.nowrap {
-    white-space: nowrap;
-}
+
 .TeamLinks__link+.TeamLinks__link::before {
     color: #dcdddf;
     content: " | ";
