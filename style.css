@@ -448,7 +448,7 @@ img {
 .container__info {
     padding-left: 8px !important;
 }
-.display {
+.displayName {
     display: inline;
 }
 .info__color {
@@ -458,4 +458,13 @@ img {
 .TeamLinks__link+.TeamLinks__link::before {
     color: #dcdddf;
     content: " | ";
+}
+
+/* Stats HTML  */
+.NFL-list {
+    background-color: lightslategray;
+    max-width: 90%;
+    margin: 24px auto;
+    padding: 8px !important;
+    border-radius: 10px;
 }

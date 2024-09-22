@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="./assets/icons8-nfl-100.png" />
-    <title>NFL Player Stats</title>
+    <title>NFL Team Stats</title>
     <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
@@ -13,47 +13,58 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-     <body>
+</head>
+<body>
     <nav class="navbar">
-      <div class="content-wrapper">
-        <div class="logo">
-          <img rel="icon" src="./assets/icons8-nfl-100.png" alt="NFL logo" />
+        <div class="content-wrapper">
+            <div class="logo">
+                <img rel="icon" src="./assets/icons8-nfl-100.png" alt="NFL logo" />
+            </div>
+            <ul class="links decor-style">
+                <li><a href="index.html" class="nav__link" onclick="toggleModal()">Home</a></li>
+                <li><a href="Teams.html" class="nav__link" onclick="toggleModal()">Teams</a></li>
+                <li><a href="stats.html" class="nav__link" onclick="toggleModal()">Stats</a></li>
+            </ul>
+            <button class="hamburger">
+                <i class="fa-solid fa-bars" type="submit" onclick="changeIcon(this)"></i>
+            </button>
         </div>
-        <ul class="links decor-style">
-          <li><a href="index.html" class="nav__link" onclick="toggleModal()">Home</a></li>
-          <li><a href="Teams.html" class="nav__link"  onclick="toggleModal()">Teams</a></li>
-          <li><a href="stats.html" class="nav__link" onclick="toggleModal()">Stats</a></li>
-        </ul>
-          <button class="hamburger">
-            <i class="fa-solid fa-bars" onclick="changeIcon(this)"></i>
-          </button>
-
-      </div>
     </nav>
 
-    <nav class="mobile-nav">
-      <ul class="mobile-Links">
-        <li><a href="#home" class="nav__link" onclick="toggleModal()">Home</a></li>
-        <li><a href="#teams" class="nav__link"  onclick="toggleModal()">Teams</a></li>
-        <li><a href="#stats" class="nav__link" onclick="toggleModal()">Stats</a></li>
-      </ul>
-    </nav>
-
-    <section id="landing-page">
-      <div class="content-wrapper content decor-style column">
-        <div style="width: 100%">
-          <div class="animate-title">
-            <h1 class="title delay-1 animate">NFL Stat Leaders</h1>
-          </div>
+    <section id="team-stats">
+        <div class="content-wrapper content decor-style column">
+            <div class="NFL-list">
+                <div class="NFL">
+                    <div class="NFL-card">
+                        <div class="NFL-card__container">
+                            <h1 id="team-name">Team Name</h1>
+                            <div id="results">
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div style="width: 100%">
-          <div class="animate-title--two">
-            <h2 class="sub__title delay-2 animate">Player Stats / Team Stats</h2>
-          </div>
-        </div>
-        
     </section>
-  </body>
-  <script src="index.js"></script>
 
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const teamData = JSON.parse(localStorage.getItem('teamData'));
+
+            if (teamData) {
+          
+                document.getElementById('team-name').textContent = teamData.team.displayName || 'N/A';
+                document.getElementById('record-summary').textContent = teamData.recordSummary || 'N/A';
+                document.getElementById('season-summary').textContent = teamData.seasonSummary || 'N/A';
+                document.getElementById('standing-summary').textContent = teamData.standingSummary || 'N/A';
+                document.getElementById('team-website').href = teamData.clubhouse || '#';
+            } else {
+                document.getElementById('team-name').textContent = 'No data found. Please go back and search for a team.';
+            }
+        });
+    </script>
+
+  
+</body>
 </html>

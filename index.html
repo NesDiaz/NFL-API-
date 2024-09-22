@@ -13,29 +13,57 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-     <body>
+  </head>
+  <body>
     <nav class="navbar">
       <div class="content-wrapper">
         <div class="logo">
           <img rel="icon" src="./assets/icons8-nfl-100.png" alt="NFL logo" />
         </div>
         <ul class="links decor-style">
-          <li><a href="index.html" class="nav__link" onclick="toggleModal()">Home</a></li>
-          <li><a href="Teams.html" class="nav__link"  onclick="toggleModal()">Teams</a></li>
-          <li><a href="stats.html" class="nav__link" onclick="toggleModal()">Stats</a></li>
+          <li>
+            <a href="index.html" class="nav__link" onclick="toggleModal()"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a href="Teams.html" class="nav__link" onclick="toggleModal()"
+              >Teams</a
+            >
+          </li>
+          <li>
+            <a href="stats.html" class="nav__link" onclick="toggleModal()"
+              >Stats</a
+            >
+          </li>
         </ul>
-          <button class="hamburger">
-            <i class="fa-solid fa-bars" onclick="changeIcon(this)"></i>
-          </button>
-
+        <button class="hamburger">
+          <i
+            class="fa-solid fa-bars"
+            type="submit"
+            onclick="changeIcon(this)"
+          ></i>
+        </button>
       </div>
     </nav>
 
     <nav class="mobile-nav">
       <ul class="mobile-Links">
-        <li><a href="#home" class="nav__link" onclick="toggleModal()">Home</a></li>
-        <li><a href="#teams" class="nav__link"  onclick="toggleModal()">Teams</a></li>
-        <li><a href="#stats" class="nav__link" onclick="toggleModal()">Stats</a></li>
+        <li>
+          <a href="index.html" class="nav__link" onclick="toggleModal()"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a href="teams.html" class="nav__link" onclick="toggleModal()"
+            >Teams</a
+          >
+        </li>
+        <li>
+          <a href="stats.html" class="nav__link" onclick="toggleModal()"
+            >Stats</a
+          >
+        </li>
       </ul>
     </nav>
 
@@ -43,36 +71,46 @@
       <div class="content-wrapper content decor-style column">
         <div style="width: 100%">
           <div class="animate-title">
-            <h1 class="title delay-1 animate">Your Favorite NFL Teams & Player Statistics</h1>
+            <h1 class="title delay-1 animate">
+              Your Favorite NFL Teams Statistics
+            </h1>
           </div>
         </div>
         <div style="width: 100%">
           <div class="animate-title--two">
-            <h2 class="sub__title delay-2 animate">Testing it all</h2>
+            <h2 class="sub__title delay-2 animate">
+              Stats you didn't know you needed
+            </h2>
           </div>
         </div>
         <div class="search__container">
-          <form class="search-style" role="search">
+          <form class="search-style" role="search" id="search-form">
             <div class="input-wrapper delay-3 animate">
-              <input type="text" placeholder="Search by Team or Player" onclick="move-player" />
-              <button class="not-loading">
+              <input
+                type="text"
+                id="team-search"
+                placeholder="Search by Team"
+              />
+              <button type="submit" id="search-button">
                 <i class="fa fa-search" aria-hidden="true"></i>
               </button>
+
+              <div id="results"></div> <!-- this is trigging results on index.html but won't work in stats.html -->
             </div>
           </form>
         </div>
       </div>
-      <img src="./assets/goal poast .png" alt="goal-post" class="goal-post goal">
+      <img
+        src="./assets/goal_poast .png"
+        alt="goal-post"
+        class="goal-post goal"
+      />
       <div class="player-wrapper">
-        <img src="./assets/football player .png" alt="player" class="player">
+        <img src="./assets/football_player .png" alt="player" class="player" />
       </div>
     </section>
+
+    <script src="index.js"></script>
+    <script src="app.js"></script>
   </body>
-  <script src="index.js"></script>
-  <!-- <a target="_blank" href="https://icons8.com/icon/39737/nfl">NFL</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
-
-  <a target="_blank" href="https://icons8.com/icon/vp4dZv81U83l/american-football-player">American Football</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
-  
-  <a target="_blank" href="https://icons8.com/icon/ZOxGyP1i8w9G/american-football-goal">American Football Goal</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
-
 </html>
