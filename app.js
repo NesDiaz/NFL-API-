@@ -1,62 +1,94 @@
-document.getElementById('search-button').addEventListener('click', async () => {
-    const teamId = document.getElementById('team-search').value; 
-    const url = `https://nfl-api-data.p.rapidapi.com/nfl-team-info/v1/data?id=${teamId}`;
-    
-    const options = {
-        method: 'GET',
-        headers: {
-            'x-rapidapi-key': '121c0d8ffcmshb186777b6367027p15942djsnd8fcc53421a9',
-            'x-rapidapi-host': 'nfl-api-data.p.rapidapi.com'
-        }
-    };
+document.addEventListener('DOMContentLoaded', () => {
+    const searchButton = document.getElementById('search-button');
+    const teamSearchInput = document.getElementById('team-search');
+
+    if (searchButton) {
+        searchButton.addEventListener('click', async (event) => {
+            event.preventDefault(); // Prevent form from submitting
+
+            // Get the team ID from the input field and trim any extra spaces
+            const teamId = teamSearchInput.value.trim();
+
+            // Basic input validation
+            if (!teamId) {
+                alert("Please enter a valid team name or ID!");
+                return;
+            }
+
+            // Additional validation (assuming teamId is an alphanumeric string)
+            const validIdPattern = /^[a-zA-Z0-9\s]+$/; // Allow letters, numbers, and spaces
+            if (!validIdPattern.test(teamId)) {
+                alert("Team ID should only contain letters, numbers, or spaces.");
+                return;
+            }
+
+            // Example length check (adjust based on your teamId format)
+            if (teamId.length < 2 || teamId.length > 30) { // Adjust length as needed
+                alert("Team ID must be between 2 and 30 characters.");
+                return;
+            }
+
+            // If validation passes, proceed with the API call
+            const url = `http://localhost:3000/api/nfl-team-info?id=${teamId}`;
+            const options = {
+                method: 'GET',
+                headers: {
+                    'Cache-Control': 'no-cache' // Ensure caching is disabled
+                }
+            };
+
+            try {
+                const response = await fetch(url, options);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                // Store the fetched team data in localStorage
+                localStorage.setItem('teamData', JSON.stringify(result));
+
+                // Redirect to stats page
+                window.location.href = 'stats.html';
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                alert('Failed to fetch team data. Please check the team ID or API key.');
+            }
+        });
+    } else {
+        console.error('Search button not found');
+    }
+});
+async function fetchTeams() {
+    const url = 'http://localhost:3000/api/nfl-teams'; // Adjust this to your actual API endpoint
 
     try {
-        const response = await fetch(url, options);
-        const result = await response.json(); 
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
-        localStorage.setItem('teamData', JSON.stringify(result));
+        const teams = await response.json();
+        const datalist = document.getElementById('teams');
 
-        window.location.href = 'stats.html';
+        // Clear existing options
+        datalist.innerHTML = '';
+
+        teams.forEach(team => {
+            const option = document.createElement('option');
+            option.value = team.name; // Adjust based on your team object structure
+            datalist.appendChild(option);
+        });
     } catch (error) {
-        console.error(error);
+        console.error('Error fetching teams:', error);
     }
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-   
-    const storedData = localStorage.getItem('teamData');
-
-    if (storedData) {
-        const teamData = JSON.parse(storedData);
-        displayTeamStats(teamData); 
-    } else {
-        console.error('No team data found in localStorage.');
-    }
-});
-
-function displayTeamStats(data) {
-    const resultsDiv = document.getElementById('results');
-    
- 
-    const team = data.team;
-    const coach = data.coach[0]; 
-    const season = data.season;
-
-
-    resultsDiv.innerHTML = `
-        <h3>Team Info</h3>
-        <p><strong>Team Name:</strong> ${team.displayName}</p>
-        <p><strong>Location:</strong> ${team.location}</p>
-        <p><strong>Abbreviation:</strong> ${team.abbreviation}</p>
-        <p><strong>Standing Summary:</strong> ${team.standingSummary}</p>
-        <p><strong>Record Summary:</strong> ${team.recordSummary}</p>
-        <p><strong>Coach:</strong> ${coach.firstName} ${coach.lastName}, Experience: ${coach.experience} year(s)</p>
-        <p><strong>Season Year:</strong> ${season.year}</p>
-        <p><strong>Season Name:</strong> ${season.displayName}</p>
-
-        <h3>Team Logo:</h3>
-        <img src="${team.logo}" alt="${team.displayName} Logo" style="width:150px;">
-        
-        <a href="${team.clubhouse}" target="_blank">Visit Clubhouse</a>
-    `;
 }
+
+// Call the function to fetch teams when the document is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    fetchTeams();
+
+    const searchButton = document.getElementById('search-button');
+    // Existing code for search button...
+});

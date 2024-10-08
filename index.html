@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./assets/icons8-nfl-100.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <title>NFL Player Stats</title>
     <link rel="stylesheet" href="style.css" />
     <link
@@ -17,55 +18,40 @@
   <body>
     <nav class="navbar">
       <div class="content-wrapper">
-        <div class="logo">
-          <img rel="icon" src="./assets/icons8-nfl-100.png" alt="NFL logo" />
-        </div>
-        <ul class="links decor-style">
-          <li>
-            <a href="index.html" class="nav__link" onclick="toggleModal()"
-              >Home</a
-            >
-          </li>
-          <li>
-            <a href="Teams.html" class="nav__link" onclick="toggleModal()"
-              >Teams</a
-            >
-          </li>
-          <li>
-            <a href="stats.html" class="nav__link" onclick="toggleModal()"
-              >Stats</a
-            >
-          </li>
-        </ul>
-        <button class="hamburger">
-          <i
-            class="fa-solid fa-bars"
-            type="submit"
-            onclick="changeIcon(this)"
-          ></i>
+          <div class="logo">
+              <img rel="icon" src="./assets/icons8-nfl-100.png" alt="NFL logo" />
+          </div>
+          <ul class="links decor-style">
+              <li>
+                  <a href="index.html" class="nav__link">Home</a>
+              </li>
+              <li>
+                  <a href="Teams.html" class="nav__link">Teams</a>
+              </li>
+              <li>
+                  <a href="stats.html" class="nav__link">Stats</a>
+              </li>
+          </ul>
+          <button class="hamburger" title="Toggle navigation">
+            <i class="fa fa-bars"></i>
         </button>
       </div>
-    </nav>
-
-    <nav class="mobile-nav">
+  </nav>
+  
+  <nav class="mobile-nav">
       <ul class="mobile-Links">
-        <li>
-          <a href="index.html" class="nav__link" onclick="toggleModal()"
-            >Home</a
-          >
-        </li>
-        <li>
-          <a href="teams.html" class="nav__link" onclick="toggleModal()"
-            >Teams</a
-          >
-        </li>
-        <li>
-          <a href="stats.html" class="nav__link" onclick="toggleModal()"
-            >Stats</a
-          >
-        </li>
+          <li>
+              <a href="index.html" class="nav__link">Home</a>
+          </li>
+          <li>
+              <a href="teams.html" class="nav__link">Teams</a>
+          </li>
+          <li>
+              <a href="stats.html" class="nav__link">Stats</a>
+          </li>
       </ul>
-    </nav>
+  </nav>
+  
 
     <section id="landing-page">
       <div class="content-wrapper content decor-style column">
@@ -85,17 +71,52 @@
         </div>
         <div class="search__container">
           <form class="search-style" role="search" id="search-form">
-            <div class="input-wrapper delay-3 animate">
-              <input
-                type="text"
-                id="team-search"
-                placeholder="Search by Team"
-              />
-              <button type="submit" id="search-button">
+            <div class="input-wrapper delay-3 animate" class="search-container">
+              <input type="text" id="team-search" placeholder="Enter Team Name or ID" list="team-names">
+
+              <button id="search-button" type="button" title="Search for NFL Team">
                 <i class="fa fa-search" aria-hidden="true"></i>
               </button>
+              
 
-              <div id="results"></div> <!-- this is trigging results on index.html but won't work in stats.html -->
+              <datalist id="team-names">
+                <option value="Arizona Cardinals"></option>
+                <option value="Atlanta Falcons"></option>
+                <option value="Baltimore Ravens"></option>
+                <option value="Buffalo Bills"></option>
+                <option value="Carolina Panthers"></option>
+                <option value="Chicago Bears"></option>
+                <option value="Cincinnati Bengals"></option>
+                <option value="Cleveland Browns"></option>
+                <option value="Dallas Cowboys"></option>
+                <option value="Denver Broncos"></option>
+                <option value="Detroit Lions"></option>
+                <option value="Green Bay Packers"></option>
+                <option value="Houston Texans"></option>
+                <option value="Indianapolis Colts"></option>
+                <option value="Jacksonville Jaguars"></option>
+                <option value="Kansas City Chiefs"></option>
+                <option value="Las Vegas Raiders"></option>
+                <option value="Los Angeles Chargers"></option>
+                <option value="Los Angeles Rams"></option>
+                <option value="Miami Dolphins"></option>
+                <option value="Minnesota Vikings"></option>
+                <option value="New England Patriots"></option>
+                <option value="New Orleans Saints"></option>
+                <option value="New York Giants"></option>
+                <option value="New York Jets"></option>
+                <option value="Philadelphia Eagles"></option>
+                <option value="Pittsburgh Steelers"></option>
+                <option value="San Francisco 49ers"></option>
+                <option value="Seattle Seahawks"></option>
+                <option value="Tampa Bay Buccaneers"></option>
+                <option value="Tennessee Titans"></option>
+                <option value="Washington Commanders"></option>
+              </datalist>
+
+              
+              <div id="results" class="teamData">
+             
             </div>
           </form>
         </div>
@@ -111,6 +132,9 @@
     </section>
 
     <script src="index.js"></script>
-    <script src="app.js"></script>
+  <script src="app.js"></script>
+  <script src="server.js"></script>
+
   </body>
 </html>
+
