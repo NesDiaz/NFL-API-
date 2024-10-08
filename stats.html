@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./assets/icons8-nfl-100.png" />
     <title>NFL Team Stats</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="index.html" />
+    <link rel="stylesheet" href="teams.html" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -15,55 +17,78 @@
     />
 </head>
 <body>
-    <nav class="navbar">
-        <div class="content-wrapper">
-            <div class="logo">
-                <img rel="icon" src="./assets/icons8-nfl-100.png" alt="NFL logo" />
-            </div>
-            <ul class="links decor-style">
-                <li><a href="index.html" class="nav__link" onclick="toggleModal()">Home</a></li>
-                <li><a href="Teams.html" class="nav__link" onclick="toggleModal()">Teams</a></li>
-                <li><a href="stats.html" class="nav__link" onclick="toggleModal()">Stats</a></li>
-            </ul>
-            <button class="hamburger">
-                <i class="fa-solid fa-bars" type="submit" onclick="changeIcon(this)"></i>
-            </button>
+  <nav class="navbar">
+    <div class="content-wrapper">
+        <div class="logo">
+            <img rel="icon" src="./assets/icons8-nfl-100.png" alt="NFL logo" />
         </div>
-    </nav>
+        <ul class="links decor-style">
+            <li>
+                <a href="index.html" class="nav__link">Home</a>
+            </li>
+            <li>
+                <a href="Teams.html" class="nav__link">Teams</a>
+            </li>
+            <li>
+                <a href="stats.html" class="nav__link">Stats</a>
+            </li>
+        </ul>
+        <button class="hamburger" title="Toggle navigation">
+          <i class="fa fa-bars"></i>
+      </button>
+    </div>
+</nav>
 
-    <section id="team-stats">
-        <div class="content-wrapper content decor-style column">
-            <div class="NFL-list">
-                <div class="NFL">
-                    <div class="NFL-card">
-                        <div class="NFL-card__container">
-                            <h1 id="team-name">Team Name</h1>
-                            <div id="results">
-                              
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<nav class="mobile-nav">
+    <ul class="mobile-Links">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="teams.html" class="nav__link">Teams</a></li>
+        <li><a href="stats.html" class="nav__link">Stats</a></li>
+    </ul>
+</nav>
+
+
+<section id="team-stats">
+    <div class="content-wrapper content decor-style column">
+        <div id="results" class="teamData">
+            <h3>Team Info</h3>
+            <p><strong>Team Name:</strong> <span id="team-name"></span></p>
+            <p><strong>Record Summary:</strong> <span id="record-summary"></span></p>
+            <p><strong>Standing Summary:</strong> <span id="standing-summary"></span></p>
+            <p><strong>Season Summary:</strong> <span id="season-summary"></span></p>
+            <h3>Team Logo:</h3>
+            <img id="team-logo" alt="Team Logo" style="width:150px;">
+            <a id="team-website" href="#" target="_blank">Visit Clubhouse</a>
         </div>
-    </section>
+    </div>
+ </section>
+ 
+
 
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            const teamData = JSON.parse(localStorage.getItem('teamData'));
+    window.addEventListener('DOMContentLoaded', () => {
+    // Retrieve the teamData from localStorage
+    const teamData = JSON.parse(localStorage.getItem('teamData'));
 
-            if (teamData) {
-          
-                document.getElementById('team-name').textContent = teamData.team.displayName || 'N/A';
-                document.getElementById('record-summary').textContent = teamData.recordSummary || 'N/A';
-                document.getElementById('season-summary').textContent = teamData.seasonSummary || 'N/A';
-                document.getElementById('standing-summary').textContent = teamData.standingSummary || 'N/A';
-                document.getElementById('team-website').href = teamData.clubhouse || '#';
-            } else {
-                document.getElementById('team-name').textContent = 'No data found. Please go back and search for a team.';
-            }
-        });
-    </script>
+    // Check if teamData exists
+    if (teamData) {
+        // Safely access nested properties using optional chaining (?.) and fallback to 'N/A' if undefined
+        document.getElementById('team-name').textContent = teamData?.team?.displayName || 'N/A';
+        document.getElementById('record-summary').textContent = teamData?.team?.recordSummary || 'N/A';
+        document.getElementById('season-summary').textContent = teamData?.season?.displayName || 'N/A';
+        document.getElementById('standing-summary').textContent = teamData?.team?.standingSummary || 'N/A';
+        document.getElementById('team-website').href = teamData?.team?.clubhouse || '#';
+    } else {
+        // If no data is found in localStorage, display a message to the user
+        document.getElementById('team-name').textContent = 'No data found. Please go back and search for a team.';
+    }
+});
+
+  </script>
+  
+  <script src="app.js"></script>
+  <script src="index.js"></script>
+
 
   
 </body>

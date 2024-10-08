@@ -1,4 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+body {
+    font-family: 'Roboto', sans-serif; 
+}
+
+h1, h2, h3 {
+    font-weight: 700; 
+}
+
+p {
+    font-weight: 400; 
+}
+
 
 * {
     padding: 0;
