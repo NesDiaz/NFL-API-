@@ -16,8 +16,8 @@ app.get('/api/nfl-team-info', async (req, res) => {
     const options = {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': '121c0d8ffcmshb186777b6367027p15942djsnd8fcc53421a9',
-            'x-rapidapi-host': 'nfl-api-data.p.rapidapi.com',
+            'x-rapidapi-key': 'e32215217amshef4e1dc9816d23ap1253d0jsn59569ab58c79',
+            'x-rapidapi-host': 'nfl-api-data.p.rapidapi.com'
         },
     };
 
