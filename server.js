@@ -1,12 +1,16 @@
 // server.js
+require('dotenv').config();
+
 const express = require('express');
 const axios = require('axios');
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware to handle JSON requests
 app.use(express.json());
+app.use(cors()); // Enable CORS
 
 // Proxy route for your API
 app.get('/api/nfl-team-info', async (req, res) => {
@@ -16,16 +20,16 @@ app.get('/api/nfl-team-info', async (req, res) => {
     const options = {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': 'e32215217amshef4e1dc9816d23ap1253d0jsn59569ab58c79',
+            'x-rapidapi-key': process.env.RAPIDAPI_KEY, // Use environment variable
             'x-rapidapi-host': 'nfl-api-data.p.rapidapi.com'
         },
     };
 
     try {
         const response = await axios(url, options);
-        res.json(response.data); // Forward the response data back to the client
+        res.status(200).json(response.data); // Forward the response data back to the client
     } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching data:', error.message);
         res.status(500).json({ error: 'Failed to fetch data' });
     }
 });
