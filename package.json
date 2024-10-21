@@ -1,13 +1,19 @@
 {
   "name": "nfl-api",
   "version": "1.0.0",
-  "description": "��#\u0000 \u0000N\u0000F\u0000L\u0000-\u0000A\u0000P\u0000I\u0000-\u0000\r\u0000 \u0000",
-  "main": "index.js",
+  "description": "A proxy server for NFL API",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.18.2"
+  }
 }

@@ -1,77 +1,79 @@
 document.addEventListener("DOMContentLoaded", function() {
-  // Goal Post Animation
-  const goalPost = document.querySelector('.goal-post');
-  if (goalPost) {
-      goalPost.classList.add('animate');
-  }
+    // Goal Post Animation
+    const goalPost = document.querySelector('.goal-post');
+    if (goalPost) {
+        goalPost.classList.add('animate');
+    }
 
-  // Player Animation on Search Input Focus
-  const playerWrapper = document.querySelector('.player-wrapper');
-  const searchInput = document.querySelector('input[type="text"]');
-  if (searchInput) {
-      searchInput.addEventListener('focus', function() {
-          playerWrapper.classList.add('move-player');
-      });
-  }
+    // Player Animation on Search Input Focus
+    const playerWrapper = document.querySelector('.player-wrapper');
+    const searchInput = document.querySelector('input[type="text"]');
+    if (searchInput) {
+        searchInput.addEventListener('focus', function() {
+            playerWrapper.classList.add('move-player');
+        });
+    }
 
-  // Mobile Navigation Toggle
-  const toggleMenu = () => {
-      const menuBtn = document.querySelector('.hamburger');
-      const mobileMenu = document.querySelector('.mobile-nav');
+    // Mobile Navigation Toggle
+    const toggleMenu = () => {
+        const menuBtn = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-nav');
 
-      menuBtn.classList.toggle('is-active');
-      mobileMenu.classList.toggle('is-active');
+        menuBtn.classList.toggle('is-active');
+        mobileMenu.classList.toggle('is-active');
 
-      const icon = menuBtn.querySelector('i');
-      icon.classList.toggle('fa-bars');
-      icon.classList.toggle('fa-xmark');
-  };
+        const icon = menuBtn.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-xmark');
+    };
 
-  document.querySelector('.hamburger').addEventListener('click', toggleMenu);
+    document.querySelector('.hamburger').addEventListener('click', toggleMenu);
 
- 
-  const mobileLinks = document.querySelectorAll('.mobile-Links .nav__link');
-  mobileLinks.forEach(link => {
-      link.addEventListener('click', function() {
-          document.querySelector('.mobile-nav').classList.remove('is-active');
-          document.querySelector('.hamburger').classList.remove('is-active');
-          const icon = document.querySelector('.hamburger i');
-          icon.classList.add('fa-bars');
-          icon.classList.remove('fa-xmark');
-      });
-  });
-});
+    const mobileLinks = document.querySelectorAll('.mobile-Links .nav__link');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            document.querySelector('.mobile-nav').classList.remove('is-active');
+            document.querySelector('.hamburger').classList.remove('is-active');
+            const icon = document.querySelector('.hamburger i');
+            icon.classList.add('fa-bars');
+            icon.classList.remove('fa-xmark');
+        });
+    });
 
+    // Team DATA
+    document.getElementById('search-button').addEventListener('click', async (event) => {
+        event.preventDefault();
+        const teamId = document.getElementById('team-search').value.trim();
 
-// Team DATA
-document.getElementById('search-button').addEventListener('click', async (event) => {
-  event.preventDefault(); 
-  const teamId = document.getElementById('team-search').value.trim();
-  
-  if (!teamId) {
-      alert("Please enter a valid team name!");
-      return;
-  }
+        if (!teamId) {
+            alert("Please enter a valid team name!");
+            return;
+        }
 
-  const url = `https://nfl-api-data.p.rapidapi.com/nfl-team-info/v1/data?id=${teamId}`;
-  const options = {
-      method: 'GET',
-      headers: {
-          'x-rapidapi-key': 'e32215217amshef4e1dc9816d23ap1253d0jsn59569ab58c79', 
-          'x-rapidapi-host': 'nfl-api-data.p.rapidapi.com'
-      }
-  };
+        const url = `https://nfl-api-data.p.rapidapi.com/nfl-team-info/v1/data?id=${teamId}`;
+        const options = {
+            method: 'GET',
+            headers: {
+                'x-rapidapi-key': 'e32215217amshef4e1dc9816d23ap1253d0jsn59569ab58c79',
+                'x-rapidapi-host': 'nfl-api-data.p.rapidapi.com'
+            }
+        };
 
-  try {
-      const response = await fetch(url, options);
-      const result = await response.json();
-
-      localStorage.setItem('teamData', JSON.stringify(result));
-
-  
-      window.location.href = 'stats.html';
-  } catch (error) {
-      console.error('Error fetching data:', error);
-      alert('Failed to fetch team data. Please check the team ID or API key.');
-  }
+        try {
+            const response = await fetch(url, options);
+            const result = await response.json();
+        
+            console.log(result); // Log the API response
+        
+            // Store the result in local storage
+            localStorage.setItem('teamData', JSON.stringify(result));
+        
+            // Redirect to stats.html
+            window.location.href = 'stats.html';
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            alert('Failed to fetch team data. Please check the team ID or API key.');
+        }
+        
+    });
 });
