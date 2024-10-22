@@ -69,11 +69,11 @@
 
                 // Updating elements with the fetched team data
                 document.getElementById('team-name').textContent = team.displayName || 'N/A';
-                document.getElementById('team-name-info').textContent = team.displayName || 'N/A'; // Updated
+                document.getElementById('team-name-info').textContent = team.displayName || 'N/A'; 
                 document.getElementById('record-summary').textContent = team.recordSummary || 'N/A';
                 document.getElementById('standing-summary').textContent = team.standingSummary || 'N/A';
-                document.getElementById('season-summary').textContent = season.displayName || 'N/A'; // Corrected based on data structure
-                document.getElementById('team-logo').src = team.logo || 'default-logo.png'; // Added logo assignment
+                document.getElementById('season-summary').textContent = season.displayName || 'N/A'; 
+                document.getElementById('team-logo').src = team.logo || 'default-logo.png'; 
                 document.getElementById('team-website').href = team.clubhouse || '#';
             } else {
                 document.getElementById('team-name').textContent = 'No data found. Please go back and search for a team.';

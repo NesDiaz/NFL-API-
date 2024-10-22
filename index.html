@@ -58,14 +58,16 @@
         
         <!-- Search Form -->
         <div class="search__container">
-          <form class="search-style" role="search" id="search-form">
+          <form class="search-style" role="search" id="team-search-form">
             <div class="input-wrapper delay-3 animate">
-              <input type="text" id="team-search" placeholder="Enter Team Name or ID" list="team-names">
+              
+              <input type="text" id="team-search-input" placeholder="Enter Team Name" list="team-options">
               <button id="search-button" type="button" title="Search for NFL Team">
-                <i class="fa fa-search" aria-hidden="true"></i>
+                  <i class="fa fa-search" aria-hidden="true"></i>
               </button>
-              <div id="landing-results" class="teamData">
-                <datalist id="team-names" >
+
+                <div id="landing-results" class="teamData">
+            <datalist id="team-options">
                   <option value="Arizona Cardinals"></option>
                   <option  value="Atlanta Falcons"></option>
                   <option value="Baltimore Ravens"></option>
@@ -114,21 +116,78 @@
 
     <!-- JavaScript for Search -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('search-button').addEventListener('click', () => {
-                const searchTerm = document.getElementById('team-search').value.toLowerCase();
-                const teamItems = document.querySelectorAll('#team-list > div');
-                
-                teamItems.forEach(item => {
-                    const teamName = item.querySelector('h3').textContent.toLowerCase();
-                    if (teamName.includes(searchTerm)) {
-                        item.style.display = 'block'; // Show matching teams
-                    } else {
-                        item.style.display = 'none'; // Hide non-matching teams
-                    }
-                });
-            });
-        });
+document.getElementById('search-button').addEventListener('click', async (event) => {
+    event.preventDefault();  // Prevent the form from submitting normally
+
+    // Get the team name from the input field
+    const teamName = document.getElementById('team-search-input').value;
+
+    // Mapping of team names to IDs
+    const teamNameToId = {
+        'Atlanta Falcons': 1,
+        'Buffalo Bills': 2,
+        'Chicago Bears': 3,
+        'Cincinnati Bengals': 4,
+        'Arizona Cardinals': 22,
+        'Baltimore Ravens': 33,
+        'Cleveland Browns': 5,
+        'Dallas Cowboys': 6,
+        'Denver Broncos': 7,
+        'Detroit Lions': 8,
+        'Green Bay Packers': 9,
+        'Houston Texans': 34,
+        'Indianapolis Colts': 11,
+        'Jacksonville Jaguars': 30,
+        'Kansas City Chiefs': 12,
+        'Las Vegas Raiders': 13,
+        'Los Angeles Chargers': 24,
+        'Los Angeles Rams': 14,
+        'Miami Dolphins': 15,
+        'Minnesota Vikings': 16,
+        'New England Patriots': 17,
+        'New Orleans Saints': 18,
+        'New York Giants': 19,
+        'New York Jets': 20,
+        'Philadelphia Eagles': 21,
+        'San Francisco 49ers': 25,
+        'Seattle Seahawks': 26,
+        'Tampa Bay Buccaneers': 27,
+        'Tennessee Titans': 10,
+        'Washington Commanders': 28,
+    };
+
+    // Get the team ID from the mapping
+    const teamId = teamNameToId[teamName];
+
+    // If the team ID is found, proceed with fetching the data
+    if (teamId) {
+        const url = `https://nfl-api-data.p.rapidapi.com/nfl-team-info/v1/data?id=${teamId}`;
+        const options = {
+            method: 'GET',
+            headers: {
+                'x-rapidapi-key': 'e32215217amshef4e1dc9816d23ap1253d0jsn59569ab58c79',
+                'x-rapidapi-host': 'nfl-api-data.p.rapidapi.com'
+            }
+        };
+
+        try {
+            const response = await fetch(url, options);
+            const result = await response.json();
+
+            // Store the team data in localStorage
+            localStorage.setItem('teamData', JSON.stringify(result));
+
+            // Redirect to stats.html
+            window.location.href = './stats.html';
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            alert('Failed to fetch team stats.');
+        }
+    } else {
+        // If team name is not found, alert the user
+        alert('Team not found. Please enter a valid team name.');
+    }
+});
     </script>
 
     <script src="index.js"></script>

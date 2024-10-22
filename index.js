@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('search-button').addEventListener('click', async (event) => {
         event.preventDefault();
         const teamId = document.getElementById('team-search').value.trim();
-
+        
         if (!teamId) {
             alert("Please enter a valid team name!");
             return;
