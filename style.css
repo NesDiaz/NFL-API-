@@ -33,6 +33,10 @@ img {
     vertical-align: middle;
 }
 
+li {
+    list-style-type: none;
+}
+
 .navbar {
     height: 80px;
     padding: 0 50px; 
@@ -366,6 +370,7 @@ button {
     text-decoration: underline;
     transition: 300ms ease;
     color: #00004d;
+
 }
 
 .mobile-Links {
