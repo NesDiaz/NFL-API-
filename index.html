@@ -117,9 +117,8 @@
     <!-- JavaScript for Search -->
     <script>
 document.getElementById('search-button').addEventListener('click', async (event) => {
-    event.preventDefault();  // Prevent the form from submitting normally
-
-    // Get the team name from the input field
+    event.preventDefault();  
+    
     const teamName = document.getElementById('team-search-input').value;
 
     // Mapping of team names to IDs

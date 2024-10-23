@@ -59,15 +59,12 @@
     </section>
 
     <script>
-    
         window.addEventListener('DOMContentLoaded', () => {
             const teamData = JSON.parse(localStorage.getItem('teamData'));
 
             if (teamData) {
                 const team = teamData.team;
                 const season = teamData.season;
-
-                // Updating elements with the fetched team data
                 document.getElementById('team-name').textContent = team.displayName || 'N/A';
                 document.getElementById('team-name-info').textContent = team.displayName || 'N/A'; 
                 document.getElementById('record-summary').textContent = team.recordSummary || 'N/A';
