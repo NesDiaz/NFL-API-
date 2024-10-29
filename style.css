@@ -395,6 +395,11 @@ button {
    width: 100%;
    justify-content: center;
 }
+@media(max-width:576px){
+    .layout{
+       display: inline;
+    }
+}
 .layout__column {
   flex: 1;                       
 }
@@ -418,11 +423,25 @@ background-color: lightslategray;
 .head__style {
     font-weight: 800;
 } 
+@media(max-width:576px){
+    .head__style{
+    display: flex;
+       justify-content: center;
+       
+    }
+}
+
 .cont__marg{
     margin-top: 12px !important;
 }
 .contentList__Item {
     padding: 6px; 
+}
+@media (max-width:576px) {
+    .contentList__Item {
+        display: flex;
+        justify-content: center;
+    }   
 }
 .team__container {
     margin-top: 4px !important;
@@ -473,6 +492,12 @@ img {
 .TeamLinks__link+.TeamLinks__link::before {
     color: #dcdddf;
     content: " | ";
+}
+@media (max-width:576px){
+    .TeamLinks__link{
+        display: flex;
+        justify-content: center;
+    }
 }
 
 /* Stats HTML  */
