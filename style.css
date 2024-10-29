@@ -299,7 +299,6 @@ button {
     width: 100%;
 }
 
-
 .move-player {
     opacity: 1;
     transform: translateX(calc(100% + 5px)); 
@@ -329,7 +328,6 @@ button {
     display: flex;
     justify-content: flex-end;
 }
-
 
 .mobile-nav.is-active {
     left: 0;
@@ -499,7 +497,6 @@ img {
         justify-content: center;
     }
 }
-
 /* Stats HTML  */
 .NFL-list {
     background-color: lightslategray;
